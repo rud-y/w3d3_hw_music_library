@@ -18,7 +18,7 @@ artist3.save()
 artist4 = Artist.new({'name' => 'Johnny Bravo'})
 artist4.save()
 
-artist4.name = 'joe bravo'
+artist4.name = 'Joe Bravo'
 artist4.update()
 
 # Artists.all()

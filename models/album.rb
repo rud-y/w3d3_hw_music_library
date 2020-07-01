@@ -8,7 +8,7 @@ class Album
 
 
     def initialize(options)
-        @id = options['id'] if options['id']
+        @id = options['id'].to_i if options['id']
         @title = options['title']
         @genre = options['genre']
         @artist_id = options['artist_id'].to_i()
@@ -49,16 +49,18 @@ class Album
         SqlRunner.run(sql, values)
     end
 
-    # def find(id)
-    #     sql = "SELECT * FROM artists WHERE id = $1"
-    #     values = [id]
-    #     restult_array = SqlRunner.run(sql, values)
-    #     if restult_array == nil
-    #         return
-    #     end
-    #     artist = restult_array[0]
-    #     return Artist.new(artist)
-    # end
+    def Album.find(id)
+        sql = "SELECT * FROM albums WHERE id = $1"
+        values = [id]
+        results = SqlRunner.run(sql, values)
+        if results.first == nil
+            return
+        end
+        album_hash = results[0]
+        album = Album.new(album_hash)
+        return album
+    end
+
 
 
 
