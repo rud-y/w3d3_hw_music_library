@@ -34,13 +34,31 @@ class Album
     end
 
     def artist()
-        sql = "SELECT * FROM artists WHERE id = $1"
+        sql = "SELECT * FROM artists WHERE artist_id = $1"
         values = [@artist_id]
         result = SqlRunner.run(sql, values)#array-like
         artist_data = result[0]
         the_artist = Artist.new(artist_data)#hash-like
         return the_artist
     end
+
+    def update()
+        sql = "UPDATE albums SET (title, genre, artist_id) = ($1, $2, $3)
+        WHERE id = $4"
+        values = [@title, @genre, @artist_id, @id]
+        SqlRunner.run(sql, values)
+    end
+
+    # def find(id)
+    #     sql = "SELECT * FROM artists WHERE id = $1"
+    #     values = [id]
+    #     restult_array = SqlRunner.run(sql, values)
+    #     if restult_array == nil
+    #         return
+    #     end
+    #     artist = restult_array[0]
+    #     return Artist.new(artist)
+    # end
 
 
 

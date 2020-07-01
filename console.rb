@@ -18,6 +18,9 @@ artist3.save()
 artist4 = Artist.new({'name' => 'Johnny Bravo'})
 artist4.save()
 
+artist4.name = 'joe bravo'
+artist4.update()
+
 # Artists.all()
 
 album1 = Album.new({
@@ -25,6 +28,9 @@ album1 = Album.new({
 'genre' => 'Pop',
 'artist_id' => artist1.id })
 album1.save()
+
+album1.title = 'Neverending'
+album1.update()
 
 album2 = Album.new({
 'title' => 'Acoustic Metal',
